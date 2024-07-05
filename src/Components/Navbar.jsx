@@ -4,17 +4,15 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 export default function ButtonAppBar() {
   const [darkMode, setDarkMode] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const theme = createTheme({
     palette: {
@@ -26,50 +24,20 @@ export default function ButtonAppBar() {
     setDarkMode(!darkMode);
   };
 
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ flexGrow: 1, margin: '10px 100px'}}>
+      <Box sx={{ flexGrow: 1, margin: '10px 100px' }}>
         <AppBar position="static" sx={{ borderRadius: '50px' }}>
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={handleMenuOpen}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-              PaperProps={{
-                sx: {
-                  borderRadius: 5,
-                },
-              }}
-            >
-              <MenuItem onClick={handleMenuClose}>
-                <AccountCircle sx={{ mr: 1 }} />
-                Sign In
-              </MenuItem>
-              <MenuItem onClick={handleMenuClose}>
-                <AccountCircle sx={{ mr: 1 }} />
-                Sign Up
-              </MenuItem>
-            </Menu>
             <Box sx={{ flexGrow: 1 }} />
+            <List sx={{ display: 'flex', flexDirection: 'row' }}>
+              {['Home', 'Weather', 'About'].map((text) => (
+                <ListItem key={text} disablePadding>
+                  <ListItemText primary={text} sx={{ textAlign: 'right', padding: '0 10px' }} />
+                </ListItem>
+              ))}
+            </List>
             <IconButton
               size="large"
               edge="end"
