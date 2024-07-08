@@ -10,6 +10,10 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+// import DetailsBox from './Detailsbox';
+import img from '../assets/img/logo.png'
+import { useNavigate } from "react-router-dom";
+
 
 export default function ButtonAppBar() {
   const [darkMode, setDarkMode] = useState(false);
@@ -28,13 +32,14 @@ export default function ButtonAppBar() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ flexGrow: 1, margin: '10px 100px' }}>
-        <AppBar position="static" sx={{ borderRadius: '50px' }}>
-          <Toolbar>
+        <AppBar position="static" sx={{ borderRadius: '20px' ,backgroundColor:"white", width:1150}}>
+          <Toolbar> 
+            <img src={img} style={{ width:100 }}/>
             <Box sx={{ flexGrow: 1 }} />
             <List sx={{ display: 'flex', flexDirection: 'row' }}>
-              {['Home', 'Weather', 'About'].map((text) => (
+              {['Home', 'History'].map((text) => (
                 <ListItem key={text} disablePadding>
-                  <ListItemText primary={text} sx={{ textAlign: 'right', padding: '0 10px' }} />
+                  <ListItemText primary={text} sx={{ textAlign: 'right', padding: '0 10px' ,color:'blue'}}/>
                 </ListItem>
               ))}
             </List>
@@ -49,6 +54,7 @@ export default function ButtonAppBar() {
             </IconButton>
           </Toolbar>
         </AppBar>
+        {/* <DetailsBox darkMode={darkMode} /> */}
       </Box>
     </ThemeProvider>
   );
